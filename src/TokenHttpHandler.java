@@ -5,7 +5,6 @@ public class TokenHttpHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
         String request = httpExchange.getRequestURI().toString().replace("/", "");
-        System.out.println(request);
         HttpResponseSender httpResponseSender = new HttpResponseSender();
 
         String response;
