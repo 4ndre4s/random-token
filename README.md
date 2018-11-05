@@ -4,3 +4,4 @@
 
 Next features:
   - guaranteed no token collision
+  - choice between upper-/lower-case, numbers or mix
