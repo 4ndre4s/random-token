@@ -34,6 +34,9 @@ public class Server {
 
         if (server != null) {
             server.createContext("/", new TokenHttpHandler());
+            server.createContext("/readme", httpExchange -> {
+               httpResponseSender.sendHtmlFile(httpExchange, "./README.md");
+            });
             server.setExecutor(null);
             server.start();
         }
