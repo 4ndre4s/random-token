@@ -9,8 +9,10 @@ public class TokenHttpHandler implements HttpHandler {
 
         String response;
 
+        //TODO: create new class for case distinction
         if (request.length() > 0) {
             if (request.matches("[0-9]+")) {
+                //TODO: check, if number is int -> not via exception!
                 try {
                     int length = Integer.parseInt(request);
                     TokenGenerator tokenGenerator = new TokenGenerator();
