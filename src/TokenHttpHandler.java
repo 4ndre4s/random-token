@@ -23,7 +23,7 @@ public class TokenHttpHandler implements HttpHandler {
                 response = "Only numbers allowed!";
             }
         } else {
-            response = "Please specify the length of your token via http://random-token.xyz/LENGTH!";
+            response = "Please specify the length of your token via http://random-token.xyz/LENGTH";
         }
 
         httpResponseSender.sendPlainText(httpExchange, response);
