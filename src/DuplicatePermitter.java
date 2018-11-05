@@ -1,18 +1,29 @@
 import java.io.File;
-import java.util.HashSet;
+import java.io.IOException;
+import java.util.logging.Level;
 
 public class DuplicatePermitter {
-    public boolean alreadyExists(String token) {
+    public static boolean alreadyExists(String token) {
         File[] existingTokens = new File("./existing_tokens/").listFiles();
-        for (File file : existingTokens) {
-            if (file.getName().equals(token)) {
-                return false;
+        if (existingTokens != null) {
+            for (File file : existingTokens) {
+                if (file.getName().equals(token)) {
+                    Server.logger.log(Level.WARNING, "token already exists!");
+                    return true;
+                }
             }
         }
-        return true;
+        System.out.println("Token already exists!");
+        return false;
     }
 
-    public void registerToken(String token) {
-        //TODO: create file with name of token
+    public static void registerToken(String token) {
+        Server.logger.log(Level.INFO, "token " + token + " registered");
+       File file = new File("./existing_tokens/" + token);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

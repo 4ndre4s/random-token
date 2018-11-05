@@ -16,7 +16,7 @@ public class TokenHttpHandler implements HttpHandler {
                 try {
                     int length = Integer.parseInt(request);
                     TokenGenerator tokenGenerator = new TokenGenerator();
-                    response = tokenGenerator.getRandomHash(length);
+                    response = tokenGenerator.getRandomToken(length);
                 } catch (NumberFormatException e) {
                     response = "Only integers allowed!";
                 }

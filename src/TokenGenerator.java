@@ -2,20 +2,30 @@ import java.util.Random;
 
 public class TokenGenerator {
 
-    public String getRandomHash(int length) {
+    private String generateToken(int length) {
         Random random = new Random();
-        StringBuilder hash = new StringBuilder();
+        StringBuilder tokenBuilder = new StringBuilder();
 
         for (int i = 0; i < length; i++) {
             double number = Math.random();
             if (number < 0.3) {
-                hash.append((char) (random.nextInt(26) + 'A'));
+                tokenBuilder.append((char) (random.nextInt(26) + 'A'));
             } else if (number >= 0.3 && number < 0.6) {
-                hash.append((char) (random.nextInt(26) + 'a'));
+                tokenBuilder.append((char) (random.nextInt(26) + 'a'));
             } else {
-                hash.append(random.nextInt(9));
+                tokenBuilder.append(random.nextInt(9));
             }
         }
-        return hash.toString();
+        return tokenBuilder.toString();
+    }
+
+    public String getRandomToken(int length) {
+        String token = "";
+        //possible while true, if all tokens with specified length exist
+        do {
+            token = generateToken(length);
+        } while (DuplicatePermitter.alreadyExists(token));
+        DuplicatePermitter.registerToken(token);
+        return token;
     }
 }
