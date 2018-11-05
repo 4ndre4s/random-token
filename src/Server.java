@@ -34,9 +34,6 @@ public class Server {
 
         if (server != null) {
             server.createContext("/", new TokenHttpHandler());
-            server.createContext("/favicon.ico", httpExchange -> {
-                httpResponseSender.sendPlainText(httpExchange, null);
-            });
             server.setExecutor(null);
             server.start();
         }
