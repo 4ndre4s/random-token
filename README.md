@@ -1,6 +1,6 @@
 # token-api
 
-Just visit http://random-token.xyz/LENGTH and you will receive your token!
+Just visit http://random-token.xyz/LENGTH to receive your token!
 
 Works for example with php `file_get_contents`.
 
