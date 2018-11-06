@@ -29,7 +29,7 @@ public class TokenGenerator {
         return token;
     }
 
-    public String getToken(int length) {
+    public String getPossibleNotUniqueToken(int length) {
         return generateToken(length);
     }
 }

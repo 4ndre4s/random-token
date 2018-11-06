@@ -9,23 +9,26 @@ public class TokenHttpHandler implements HttpHandler {
 
         String response;
 
+        final int MAX_LENGTH = 200;
         //TODO: create new class for case distinction
-        if (request.length() > 0) {
-            if (request.matches("[0-9]+")) {
-                //TODO: check, if number is int -> not via exception!
-                try {
-                    int length = Integer.parseInt(request);
-                    TokenGenerator tokenGenerator = new TokenGenerator();
-                    response = tokenGenerator.getToken(length);
-                } catch (NumberFormatException e) {
-                    response = "Only integers allowed!";
-                }
-
+        if (request.matches("[0-9]+")) {
+            int length = 0;
+            try {
+                length = Integer.parseInt(request);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                response = "LENGTH must be less than " + (MAX_LENGTH + 1) + "!";
+                httpResponseSender.sendPlainText(httpExchange, response);
+            }
+            if (length > 0 && length < 201) {
+                TokenGenerator tokenGenerator = new TokenGenerator();
+                response = tokenGenerator.getUniqueToken(length);
             } else {
-                response = "Only numbers allowed!";
+                response = "LENGTH must be less than "  + (MAX_LENGTH + 1) + "!";
             }
         } else {
-            response = "Please specify the length of your token via http://random-token.xyz/LENGTH";
+            response = "Please specify the length of your token via http://random-token.xyz/LENGTH"
+            + "\nLENGTH must be an int between 1 and " + MAX_LENGTH + "!";
         }
 
         httpResponseSender.sendPlainText(httpExchange, response);
