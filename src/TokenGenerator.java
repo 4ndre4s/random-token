@@ -19,7 +19,7 @@ public class TokenGenerator {
         return tokenBuilder.toString();
     }
 
-    public String getRandomToken(int length) {
+    public String getUniqueToken(int length) {
         String token = "";
         //possible while true, if all tokens with specified length exist
         do {
@@ -27,5 +27,9 @@ public class TokenGenerator {
         } while (DuplicatePermitter.alreadyExists(token));
         DuplicatePermitter.registerToken(token);
         return token;
+    }
+
+    public String getToken(int length) {
+        return generateToken(length);
     }
 }

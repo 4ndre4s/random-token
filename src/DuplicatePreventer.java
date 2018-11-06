@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
-public class DuplicatePermitter {
+public class DuplicatePreventer {
     public static boolean alreadyExists(String token) {
         File[] existingTokens = new File("./existing_tokens/").listFiles();
         if (existingTokens != null) {
