@@ -24,8 +24,8 @@ public class TokenGenerator {
         //possible while true, if all tokens with specified length exist
         do {
             token = generateToken(length);
-        } while (DuplicatePermitter.alreadyExists(token));
-        DuplicatePermitter.registerToken(token);
+        } while (DuplicatePreventer.alreadyExists(token));
+        DuplicatePreventer.registerToken(token);
         return token;
     }
 
