@@ -1,9 +1,12 @@
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.util.logging.Level;
+
 public class TokenHttpHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
+        Log.logger.log(Level.INFO, "requested: " + httpExchange.getRequestURI());
         String request = httpExchange.getRequestURI().toString().replace("/", "");
         HttpResponseSender httpResponseSender = new HttpResponseSender();
 

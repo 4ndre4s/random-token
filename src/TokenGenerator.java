@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
 
 public class TokenGenerator {
 
@@ -21,7 +24,7 @@ public class TokenGenerator {
 
     public String getUniqueToken(int length) {
         String token = "";
-        //possible while true, if all tokens with specified length exist
+        //TODO: fix possible while true, if all tokens with specified length exist
         do {
             token = generateToken(length);
         } while (DuplicatePreventer.alreadyExists(token));
@@ -32,4 +35,32 @@ public class TokenGenerator {
     public String getPossibleNotUniqueToken(int length) {
         return generateToken(length);
     }
+
+    private static class DuplicatePreventer {
+        public static boolean alreadyExists(String token) {
+            File[] existingTokens = new File("./existing_tokens/").listFiles();
+            if (existingTokens != null) {
+                for (File file : existingTokens) {
+                    if (file.getName().equals(token)) {
+                        Log.logger.log(Level.WARNING, "token already exists!");
+                        return true;
+                    }
+                }
+            }
+            System.out.println("Token already exists!");
+            return false;
+        }
+
+        public static void registerToken(String token) {
+            Log.logger.log(Level.INFO, "token " + token + " registered");
+            File file = new File("./existing_tokens/" + token);
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
+
