@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'net.ltgt.apt' version '0.10'
+}
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+
+    apt 'org.projectlombok:lombok:1.18.4'
+}
+
