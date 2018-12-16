@@ -8,11 +8,6 @@ import java.util.logging.Level;
 
 public class Server {
 
-    public static void main(String[] args) {
-        Server webserver = new Server();
-    }
-
-
     public Server() {
         this(2089);
     }
