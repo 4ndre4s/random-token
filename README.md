@@ -10,7 +10,7 @@ $token = file_get_contents("https://random-token.xyz/LENGTH
 ```
 ### Java: ###
 ``` java
-private static String getToken(int length) throws IOException {
+private static String fetchToken(int length) throws IOException {
         URL url = new URL("https://random-token.xyz/" + length);
         InputStreamReader inputStreamReader = new InputStreamReader(url.openStream());
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -23,11 +23,11 @@ private static String getToken(int length) throws IOException {
 }
 ```
 
-You can get Tokens between 1 and 30 characters in length.
+### You can get Tokens between 1 and 30 characters in length. ###
 
 
 
 
-Coming features:
+### Coming features: ###
   - no token collision
   - choice between upper-/lower-case, numbers or mix
