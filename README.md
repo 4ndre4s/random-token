@@ -18,7 +18,7 @@ private static String getToken(int length) throws IOException {
             tokenBuiler.append(line);
         }
         return tokenBuiler.toString();
-    }
+}
 ```
 
 You can get Tokens between 1 and 30 characters in length.
