@@ -5,7 +5,9 @@ Just visit http://random-token.xyz/LENGTH to receive your token!
 ### wget: ###
 `wget https://random-token.xyz/LENGTH`
 ### PHP: ###
-`$token = file_get_contents("https://random-token.xyz/LENGTH`
+``` php
+$token = file_get_contents("https://random-token.xyz/LENGTH
+```
 ### Java: ###
 ``` java
 private static String getToken(int length) throws IOException {
