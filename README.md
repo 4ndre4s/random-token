@@ -1,4 +1,4 @@
-# token-api
+# random-token.xyz
 
 Just visit http://random-token.xyz/LENGTH to receive your token!
 
