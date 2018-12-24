@@ -1,6 +1,6 @@
 # random-token.xyz
 
-Just visit http://random-token.xyz/LENGTH to receive your pseudo-random token!
+Just visit https://random-token.xyz/LENGTH to receive your pseudo-random token!
 
 ### wget: ###
 `wget https://random-token.xyz/LENGTH`
