@@ -27,7 +27,7 @@ private static String fetchToken(int length) throws IOException {
 }
 ```
 
-### You can get Tokens between 1 and 30 characters in length. ###
+### You can get Tokens between 1 and 200 characters in length. ###
 
 
 
