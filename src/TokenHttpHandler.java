@@ -7,33 +7,39 @@ public class TokenHttpHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) {
         Log.logger.log(Level.INFO, "requested: " + httpExchange.getRequestURI());
+
         String request = httpExchange.getRequestURI().toString().replace("/", "");
         HttpResponseSender httpResponseSender = new HttpResponseSender();
 
-        String response;
+        httpResponseSender.sendPlainText(httpExchange, generateResponse(request));
+    }
 
+    private String generateResponse(String request) {
         final int MAX_LENGTH = 200;
-        //TODO: create new class for case distinction
-        if (request.matches("[0-9]+")) {
-            int length = 0;
-            try {
-                length = Integer.parseInt(request);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                response = "LENGTH must be less than " + (MAX_LENGTH + 1) + "!";
-                httpResponseSender.sendPlainText(httpExchange, response);
-            }
-            if (length > 0 && length < 201) {
-                TokenGenerator tokenGenerator = new TokenGenerator();
-                response = tokenGenerator.getUniqueToken(length);
-            } else {
-                response = "LENGTH must be less than "  + (MAX_LENGTH + 1) + "!";
-            }
-        } else {
-            response = "Please specify the length of your token via http://random-token.xyz/LENGTH"
-            + "\nLENGTH must be an int between 1 and " + MAX_LENGTH + "!";
+
+        if (!request.matches("[0-9]+")) {
+            return "Please specify the length of your token via http://random-token.xyz/LENGTH"
+                    + "\nLENGTH must be an int between 1 and " + MAX_LENGTH + "!";
         }
 
-        httpResponseSender.sendPlainText(httpExchange, response);
+        int length;
+
+        try {
+            length = Integer.parseInt(request);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return  "LENGTH must be less than " + (MAX_LENGTH + 1) + "!";
+        }
+
+        if (length < 0) {
+            return "LENGTH must be greater than 0";
+        }
+
+        if (length > MAX_LENGTH) {
+            return "LENGTH must be less than "  + (MAX_LENGTH + 1) + "!";
+        }
+
+        TokenGenerator tokenGenerator = new TokenGenerator();
+        return tokenGenerator.getUniqueToken(length);
     }
 }
