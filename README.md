@@ -1,6 +1,6 @@
 # random-token.xyz
 
-Just visit https://random-token.xyz/LENGTH to receive your pseudo-random token!
+Just visit https://random-token.xyz/LENGTH to receive your pseudo-random token! [![Build Status](https://travis-ci.org/4ndre4s/random-token.svg?branch=master)](https://travis-ci.org/4ndre4s/random-token)
 
 ### wget: ###
 `wget https://random-token.xyz/LENGTH`
